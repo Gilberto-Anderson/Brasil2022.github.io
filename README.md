@@ -37,7 +37,7 @@ Exportação de um novo arquivo CSV limpo.
 
 O arquivo tratado está disponível neste repositório:
 
-brasil_2022_regioes_corrigidas.csv
+"brasil_2022_regioes_corrigidas.csv"
 
 # Conclusão
 Após a análise e limpeza dos dados, foi possível gerar uma base mais organizada e adequada para utilização em futuras etapas do projeto.

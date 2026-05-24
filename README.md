@@ -1,5 +1,6 @@
 #### Link colab: https://colab.research.google.com/drive/1vVlu_rTXvkTyRxdHbH6FEng0km9t6RsV?usp=sharing
 #### Link Observablehq: https://observablehq.com/@gilberto-anderson/projeto_analise_dados
+#### Link Análise dos Dados: https://docs.google.com/document/d/1hSDlosHTB6CzW2HsX234b-E18V9Of0R3iqJuArw7UQY/edit?usp=sharing
 # Projeto de Análise e Limpeza de Dados - Brasil 2022
 Este projeto foi desenvolvido no Google Colaboratory com o objetivo de realizar a leitura, análise, limpeza e visualização de dados em formato CSV.
 

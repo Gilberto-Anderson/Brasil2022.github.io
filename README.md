@@ -4,6 +4,8 @@
 # Projeto de Análise e Limpeza de Dados - Brasil 2022.csv
 Este projeto foi desenvolvido no Google Colaboratory com o objetivo de realizar a leitura, análise, limpeza e visualização de dados em formato CSV.
 
+# Colaboradores
+Nicolas Soares / Gilberto Anderson
 # Tema
 Análise de indicadores socioeconômicos dos municípios brasileiros no ano de 2022.
 

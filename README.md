@@ -1,5 +1,3 @@
-# Projeto_Analise_de_dados
-
 # Projeto de Análise e Limpeza de Dados - Brasil 2022
 Este projeto foi desenvolvido no Google Colaboratory com o objetivo de realizar a leitura, análise, limpeza e visualização de dados em formato CSV.
 
@@ -11,21 +9,33 @@ O objetivo do projeto é compreender a estrutura dos dados, identificar inconsis
 
 # Tecnologias utilizadas
 Python
-Pandas
-Matplotlib
-Google Colab
-GitHub
-Etapas realizadas
-Leitura do arquivo CSV;
-Exploração inicial da base;
-Identificação de valores nulos;
-Verificação de registros duplicados;
-Limpeza e padronização dos dados;
-Geração de gráficos;
-Exportação de um novo arquivo CSV limpo.
-Arquivo gerado
 
-# O arquivo tratado está disponível neste repositório:
+Pandas
+
+Matplotlib
+
+Google Colab
+
+GitHub
+
+# Etapas realizadas
+Leitura do arquivo CSV;
+
+Exploração inicial da base;
+
+Identificação de valores nulos;
+
+Verificação de registros duplicados;
+
+Limpeza e padronização dos dados;
+
+Geração de gráficos;
+
+Exportação de um novo arquivo CSV limpo.
+
+# Arquivo gerado
+
+O arquivo tratado está disponível neste repositório:
 
 brasil_2022_regioes_corrigidas.csv
 

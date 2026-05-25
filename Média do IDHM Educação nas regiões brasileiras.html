@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@6.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.1.0"></script>
+</head>
+<body>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "IDHM Educação por Região",
+  "description": "Média do IDHM Educação nas regiões brasileiras",
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
+  },
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 6, "cornerRadiusTopRight": 6},
+  "encoding": {
+    "x": {
+      "field": "regiao",
+      "type": "nominal",
+      "title": "Região",
+      "axis": {"labelAngle": 0, "labelFontSize": 12, "titleFontSize": 14}
+    },
+    "y": {
+      "aggregate": "mean",
+      "field": "IDHM_Educacao",
+      "type": "quantitative",
+      "title": "Média IDHM Educação",
+      "axis": {
+        "labelFontSize": 12,
+        "titleFontSize": 14,
+        "format": ".2f",
+        "grid": true
+      },
+      "scale": {"zero": false}
+    },
+    "color": {"field": "regiao", "type": "nominal", "title": "Região"},
+    "tooltip": [
+      {"field": "regiao", "type": "nominal", "title": "Região"},
+      {
+        "aggregate": "mean",
+        "field": "IDHM_Educacao",
+        "type": "quantitative",
+        "title": "Média Educação",
+        "format": ".3f"
+      }
+    ]
+  },
+  "config": {
+    "background": "#ffffff",
+    "view": {"stroke": "transparent"},
+    "axis": {"domain": false},
+    "title": {"fontSize": 18, "anchor": "start"}
+  }
+};
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  </script>
+</body>
+</html>

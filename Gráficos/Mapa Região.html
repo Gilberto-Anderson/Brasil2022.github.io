@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/vega@6.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.1.0"></script>
+</head>
+<body>
+  <div id="vis"/>
+  <script>
+    const spec = {
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Visualização Geoespacial: Distribuição das Regiões do Brasil",
+  "width": 650,
+  "height": 500,
+  "config": {
+    "view": {"stroke": "transparent"},
+    "title": {"fontSize": 18, "anchor": "start"}
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/codeforamerica/click_that_hood/master/public/data/brazil-states.geojson",
+    "format": {"type": "json", "property": "features"}
+  },
+  "transform": [
+    {
+      "calculate": "indexof(['AM','RR','AP','PA','TO','RO','AC'], datum.properties.sigla) >= 0 ? 'Norte' : indexof(['MA','PI','CE','RN','PB','PE','AL','SE','BA'], datum.properties.sigla) >= 0 ? 'Nordeste' : indexof(['MT','DF','GO','MS'], datum.properties.sigla) >= 0 ? 'Centro-Oeste' : indexof(['SP','RJ','ES','MG'], datum.properties.sigla) >= 0 ? 'Sudeste' : 'Sul'",
+      "as": "regiao"
+    }
+  ],
+  "projection": {"type": "mercator"},
+  "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 1.5},
+  "encoding": {
+    "color": {"field": "regiao", "type": "nominal", "title": "Região"},
+    "tooltip": [
+      {"field": "properties.name", "type": "nominal", "title": "Estado"},
+      {"field": "regiao", "type": "nominal", "title": "Região"}
+    ]
+  }
+};
+    vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
+  </script>
+</body>
+</html>

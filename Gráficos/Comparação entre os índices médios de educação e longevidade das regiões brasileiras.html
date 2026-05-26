@@ -8,12 +8,12 @@
 <body>
   <div id="vis"/>
   <script>
-    const spec = {
+    const spec =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Comparação Regional: IDHM Educação vs. Longevidade",
-  "description": "Barras agrupadas comparando as médias de educação e longevidade por macrorregião.",
-  "width": 150,
-  "height": 400,
+  "description": "Comparação das médias de educação e longevidade por macrorregião.",
+  "width": 650, 
+  "height": 420, 
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -27,25 +27,23 @@
     },
     {"fold": ["Educação", "Longevidade"], "as": ["Indicador", "Valor"]}
   ],
-  "config": {"view": {"stroke": "transparent"}},
+  "mark": {"type": "bar", "cornerRadiusTopLeft": 6, "cornerRadiusTopRight": 6},
   "encoding": {
     "x": {
-      "field": "Indicador",
+      "field": "regiao",
       "type": "nominal",
-      "title": null,
-      "axis": {"labelAngle": 0, "labelFontSize": 11}
+      "title": "Região",
+      "axis": {"labelAngle": 0, "labelFontSize": 12}
     },
     "y": {
       "field": "Valor",
       "type": "quantitative",
       "title": "Média do Índice",
-      "scale": {"domain": [0.5, 0.9]},
-      "axis": {
-        "grid": true,
-        "format": ".3f",
-        "labelFontSize": 11,
-        "titleFontSize": 13
-      }
+      "scale": {"zero": false},
+      "axis": {"grid": true, "format": ".3f", "labelFontSize": 12, "titleFontSize": 14}
+    },
+    "xOffset": {
+      "field": "Indicador" 
     },
     "color": {
       "field": "Indicador",
@@ -58,29 +56,11 @@
         "titleFontSize": 12
       }
     },
-    "column": {
-      "field": "regiao",
-      "type": "nominal",
-      "title": "Macrorregiões brasileiras",
-      "header": {"labelFontSize": 13, "titleFontSize": 14, "labelPadding": 10}
-    },
     "tooltip": [
       {"field": "regiao", "type": "nominal", "title": "Região"},
       {"field": "Indicador", "type": "nominal"},
-      {
-        "field": "Valor",
-        "type": "quantitative",
-        "title": "Média Corrigida",
-        "format": ".3f"
-      }
+      {"field": "Valor", "type": "quantitative", "title": "Média", "format": ".3f"}
     ]
-  },
-  "mark": {
-    "type": "bar",
-    "stroke": "white",
-    "strokeWidth": 1,
-    "cornerRadiusTopLeft": 8,
-    "cornerRadiusTopRight": 8
   }
 };
     vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);

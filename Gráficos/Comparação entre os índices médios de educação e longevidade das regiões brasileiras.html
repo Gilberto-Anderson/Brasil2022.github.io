@@ -10,74 +10,79 @@
   <script>
     const spec = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Educação x Longevidade por Região",
-  "description": "Comparação entre os índices médios de educação e longevidade das regiões brasileiras",
-  "width": 750,
-  "height": 500,
+  "title": "Comparação Regional: IDHM Educação vs. Longevidade",
+  "description": "Barras agrupadas comparando as médias de educação e longevidade por macrorregião.",
+  "width": 150,
+  "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
   "transform": [
     {
       "aggregate": [
-        {"op": "mean", "field": "IDHM_Educacao", "as": "MEDIA_EDUCACAO"},
-        {"op": "mean", "field": "IDHM_Longevidade", "as": "MEDIA_LONG"}
+        {"op": "mean", "field": "IDHM_Educacao", "as": "Educação"},
+        {"op": "mean", "field": "IDHM_Longevidade", "as": "Longevidade"}
       ],
       "groupby": ["regiao"]
-    }
+    },
+    {"fold": ["Educação", "Longevidade"], "as": ["Indicador", "Valor"]}
   ],
-  "mark": {
-    "type": "circle",
-    "opacity": 0.85,
-    "stroke": "black",
-    "strokeWidth": 1.2
-  },
+  "config": {"view": {"stroke": "transparent"}},
   "encoding": {
     "x": {
-      "field": "MEDIA_EDUCACAO",
-      "type": "quantitative",
-      "title": "Média IDHM Educação",
-      "scale": {"zero": false},
-      "axis": {
-        "labelFontSize": 12,
-        "titleFontSize": 14,
-        "format": ".3f",
-        "grid": true
-      }
+      "field": "Indicador",
+      "type": "nominal",
+      "title": null,
+      "axis": {"labelAngle": 0, "labelFontSize": 11}
     },
     "y": {
-      "field": "MEDIA_LONG",
+      "field": "Valor",
       "type": "quantitative",
-      "title": "Média IDHM Longevidade",
-      "scale": {"zero": false},
-      "axis": {"labelFontSize": 12, "titleFontSize": 14, "format": ".3f"}
+      "title": "Média do Índice",
+      "scale": {"domain": [0.5, 0.9]},
+      "axis": {
+        "grid": true,
+        "format": ".3f",
+        "labelFontSize": 11,
+        "titleFontSize": 13
+      }
     },
-    "size": {"value": 700},
-    "color": {"field": "regiao", "type": "nominal", "title": "Região"},
+    "color": {
+      "field": "Indicador",
+      "type": "nominal",
+      "scale": {"range": ["#3b82f6", "#10b981"]},
+      "legend": {
+        "title": "Indicador Socioeconômico",
+        "orient": "top",
+        "labelFontSize": 12,
+        "titleFontSize": 12
+      }
+    },
+    "column": {
+      "field": "regiao",
+      "type": "nominal",
+      "title": "Macrorregiões brasileiras",
+      "header": {"labelFontSize": 13, "titleFontSize": 14, "labelPadding": 10}
+    },
     "tooltip": [
       {"field": "regiao", "type": "nominal", "title": "Região"},
+      {"field": "Indicador", "type": "nominal"},
       {
-        "field": "MEDIA_EDUCACAO",
+        "field": "Valor",
         "type": "quantitative",
-        "title": "Educação Média",
-        "format": ".3f"
-      },
-      {
-        "field": "MEDIA_LONG",
-        "type": "quantitative",
-        "title": "Longevidade Média",
+        "title": "Média Corrigida",
         "format": ".3f"
       }
     ]
   },
-  "config": {
-    "background": "#ffffff",
-    "view": {"stroke": "transparent"},
-    "axis": {"domain": false},
-    "legend": {"titleFontSize": 13, "labelFontSize": 12},
-    "title": {"fontSize": 20, "anchor": "start"}
+  "mark": {
+    "type": "bar",
+    "stroke": "white",
+    "strokeWidth": 1,
+    "cornerRadiusTopLeft": 8,
+    "cornerRadiusTopRight": 8
   }
-};
+}
     vegaEmbed("#vis", spec, {mode: "vega-lite"}).then(console.log).catch(console.warn);
   </script>
 </body>

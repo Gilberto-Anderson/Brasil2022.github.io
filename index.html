@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.1.0"></script>
   
-  <script src="graficos.js" defer></script>
+  <script src="script.js" defer></script>
   
   <style>
     * {
@@ -210,23 +210,6 @@
       color: #94a3b8;
       font-size: 0.95rem;
       line-height: 1.6;
-      margin-bottom: 15px;
-    }
-
-    .repo-link {
-      display: inline-block;
-      background-color: #3b82f6;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      transition: background-color 0.2s ease;
-    }
-
-    .repo-link:hover {
-      background-color: #2563eb;
     }
 
     .creators-grid {
@@ -276,6 +259,21 @@
       text-transform: uppercase;
     }
 
+    .creator-role {
+      font-size: 0.85rem;
+      color: #3b82f6;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .creator-desc {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
     .footer-bottom {
       width: 100%;
       max-width: 1200px;
@@ -316,13 +314,13 @@
     </div>
 
     <div class="docs-section">
-      <h2>Origem dos Dados e Informações Monitoradas</h2>
+      <h2> Origem dos Dados e Informações Monitoradas</h2>
       <p>As análises estruturadas neste painel consolidam dados oficiais coletados a partir de bases de dados governamentais e demográficas do Brasil, tendo como referencial o ano de <strong>2022</strong>. As informações foram coletadas junto ao <strong>IBGE (Instituto Brasileiro de Geografia e Estatística)</strong> e ao <strong>PNUD (Programa das Nações Unidas para o Desenvolvimento)</strong>.</p>
       <p>Para a construção dos indicadores e gráficos deste ecossistema visual, são mapeados e correlacionados os seguintes dados úteis de cada município:</p>
       <ul>
         <li><strong>Informações de Localização:</strong> Identificação geográfica mapeando a qual das 5 Macrorregiões do país o município pertence (Norte, Nordeste, Centro-Oeste, Sudeste ou Sul) e o seu respectivo Estado.</li>
         <li><strong>População Estimada:</strong> O volume total de habitantes residentes calculado para o respectivo período censitário.</li>
-        <li><strong>Produto Interno Bruto (PIB):</strong> O montante total de riquezas financeiras geradas pela atividade econômica local.</li>
+        <li><strong>Produto Interno Burto (PIB):</strong> O montante total de riquezas financeiras geradas pela atividade econômica local.</li>
         <li><strong>Índice de Desenvolvimento Humano Municipal (IDHM):</strong> A métrica geral de bem-estar social, desmembrada detalhadamente nas subvariáveis de <strong>Educação</strong> (fluxo escolar) e de <strong>Longevidade</strong> (expectativa de vida).</li>
       </ul>
     </div>
@@ -339,8 +337,10 @@
     <div class="chart-card">
       <h2>1. Média do IDHM por Região</h2>
       <p class="desc">Análise comparativa do Índice de Desenvolvimento Humano Municipal agregada pelas cinco macrorregiões geográficas.</p>
-      <div class="chart-container"><div id="vis1"></div></div>
-      <div class="insight-box">
+        <div id="vis1" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> Os dados indicam uma assimetria no desenvolvimento humano do país, com as regiões Centro-Oeste, Sudeste e Sul tipicamente apresentando índices consolidados mais elevados devido à maior concentração de infraestrutura de serviços, enquanto o Norte e o Nordeste exibem margens amplas para avanço estrutural em suas médias locais.
       </div>
     </div>
@@ -348,17 +348,21 @@
     <div class="chart-card">
       <h2>2. Top 10 Municípios Mais Populosos</h2>
       <p class="desc">Ranking dos dez maiores municípios do país em volume absoluto de população estimada.</p>
-      <div class="chart-container"><div id="vis2"></div></div>
-      <div class="insight-box">
+        <div id="vis2" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico evidencia a macrocefalia urbana brasileira, onde grandes capitais como São Paulo e Rio de Janeiro centralizam dezenas de milhões de habitantes, concentrando grande parte dos desafios logísticos e habitacionais do país.
       </div>
     </div>
 
-    <div class="chart-card">
+     <div class="chart-card">
       <h2>3. Quantidade de municípios por região do Brasil</h2>
       <p class="desc">Distribuição numérica total do número de entidades municipais instituídas dentro de cada porção do território nacional.</p>
-      <div class="chart-container"><div id="vis3"></div></div>
-      <div class="insight-box">
+        <div id="vis3" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico revela o grau de fragmentação territorial e administrativa do Brasil, apontando como regiões como o Nordeste e o Sudeste possuem uma malha pulverizada em uma vasta quantidade de prefeituras autônomas, demandando políticas complexas de partilha do Fundo de Participação dos Municípios (FPM).
       </div>
     </div>
@@ -366,8 +370,10 @@
     <div class="chart-card">
       <h2>4. Média do IDHM Educação</h2>
       <p class="desc">Análise focada exclusivamente no subíndice do IDH correspondente aos fluxos de escolarização.</p>
-      <div class="chart-container"><div id="vis4"></div></div>
-      <div class="insight-box">
+        <div id="vis4" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> A dimensão educacional costuma ser a variável mais sensível e com maior disparidade no cálculo global do IDH. Os dados evidenciam quais frentes macrorregionais obtiveram melhor êxito na redução do analfabetismo e no avanço da taxa de frequência escolar na idade adequada de suas respectivas redes de ensino.
       </div>
     </div>
@@ -375,8 +381,10 @@
     <div class="chart-card">
       <h2>5. IDHM x População Regional</h2>
       <p class="desc">Cruzamento estatístico mapeando a correlação direta entre o adensamento demográfico e os níveis de bem-estar social.</p>
-      <div class="chart-container"><div id="vis5"></div></div>
-      <div class="insight-box">
+        <div id="vis5" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> O cruzamento permite identificar se o volume habitacional impulsiona ou retém os indicadores sociais. Frequentemente, nota-se que cidades médias conseguem obter faixas superiores de IDHM, pois equilibram bom dinamismo econômico sem sofrer de forma tão severa com os gargalos crônicos de infraestrutura das metrópoles saturadas.
       </div>
     </div>
@@ -384,26 +392,32 @@
     <div class="chart-card">
       <h2>6. Comparação entre Longevidade e Educação Regional</h2>
       <p class="desc">Correlação interna relacionando as médias de expectativa de vida em face dos níveis de instrução escolar.</p>
-      <div class="chart-container"><div id="vis6"></div></div>
-      <div class="insight-box">
+        <div id="vis6" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico prova a forte correlação positiva entre saúde (longevidade) e educação. Regiões que investem na base escolar tendem a colher, de forma reflexa, melhores indicadores de qualidade de vida geral e medicina preventiva, elevando as duas pontas da métrica.
       </div>
     </div>
 
     <div class="chart-card">
       <h2>7. Top 10 municípios com maior PIB</h2>
-      <p class="desc">Ranking e distribuição do volume absoluto de riqueza gerada pelos principais polos econômicos municipais do país.</p>
-      <div class="chart-container"><div id="vis7"></div></div>
-      <div class="insight-box">
-        <strong>Análise Analítica:</strong> Os dados evidenciam a massiva disparidade na produção de riquezas, demonstrando como poucas metrópoles brasileiras detêm participações gigantescas no Produto Interno Burto. Cidades como São Paulo, Rio de Janeiro e Brasília atuam como as principais forças motrizes da arrecadação e do mercado corporativo nacional.
+      <p class="desc">Ranking Pegar distribuição do volume absoluto de riqueza gerada pelos principais polos econômicos municipais do país.</p>
+        <div id="vis7" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
+        <strong>Análise Analítica:</strong> Os dados evidenciam a massiva disparidade na produção de riquezas, demonstrando como poucas metrópoles brasileiras detêm participações gigantescas no Produto Interno Beto. Cidades como São Paulo, Rio de Janeiro e Brasília atuam como as principais forças motrizes da arrecadação e do mercado corporativo nacional.
       </div>
     </div>
 
     <div class="chart-card">
       <h2>8. Participação do PIB por Região</h2>
       <p class="desc">Mapeamento do grau de concentração econômica e contribuição financeira agregada das principais cidades da federação.</p>
-      <div class="chart-container"><div id="vis8"></div></div>
-      <div class="insight-box">
+        <div id="vis8" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> Esta visualização reforça o impacto de distritos industriais, centros financeiros e grandes complexos de serviços no PIB. O peso desproporcional desses municípios líderes ilustra a centralização da atividade econômica de alta densidade no território brasileiro, criando grandes polos de atração para investimentos de capital.
       </div>
     </div>
@@ -411,8 +425,10 @@
     <div class="chart-card">
       <h2>9. PIB x População por Região</h2>
       <p class="desc">Visualização do relacionamento entre o Produto Interno Bruto e a população estimada em cada região.</p>
-      <div class="chart-container"><div id="vis9"></div></div>
-      <div class="insight-box">
+        <div id="vis9" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+        </figure>
+         <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico evidencia a profunda desigualdade na distribuição de riqueza e demografia entre as macrorregiões brasileiras. O Sudeste se destaca isolado no topo, concentrando a maior população e o maior PIB total do país (superior a 3,2 trilhões). Em contrapartida, o Nordeste exibe um forte contraste estrutural: possui a segunda maior população total, mas gera um PIB proporcionalmente baixo, muito próximo ao do Centro-Oeste (que tem uma população bem menor). Além disso, o tamanho das bolhas revela que as regiões Sul e Sudeste lideram em bem-estar social, apresentando as maiores médias de IDHM do território nacional.
       </div>
     </div>
@@ -423,8 +439,8 @@
     <div class="footer-content">
       <div class="footer-project-info">
         <h3>Dashboard Socioeconômico Regional</h3>
-        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Os dados brutos passaram por uma etapa prévia de engenharia, limpeza e padronização utilizando a biblioteca Pandas em ambiente Python (Google Colab). Durante o tratamento, os tipos de dados foram corrigidos, inconsistências de caracteres foram tratadas e as macrorregiões do país foram devidamente mapeadas e validadas de forma correta para cada um dos municípios.</p>
-        <a href="https://github.com/Gilberto-Anderson/Projeto_Analise_e_Limpeza_de_Dados" target="_blank" class="repo-link">Ver Repositório no GitHub</a>
+        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Tecnologias utilizadas: Python, Pandas, Vega-Lite e Engenharia de Frontend.</p>
+        <a href="https://github.com/Gilberto-Anderson/Projeto_Analise_e_Limpeza_de_Dados" target="_blank" style="display: inline-block; background-color: #3b82f6; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; margin-top: 10px;">Ver Repositório no GitHub</a>
       </div>
       
       <div class="creators-grid">

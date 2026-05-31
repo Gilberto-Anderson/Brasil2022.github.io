@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Socioeconômico - Brasil 2022</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/vega@6.2.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6.4.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@7.1.0"></script>
+  
+  <script src="graficos.js" defer></script>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    header h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+    
+    header p {
+      font-size: 1.2rem;
+      opacity: 0.85;
+      max-width: 900px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+    
+    .container {
+      max-width: 1300px;
+      margin: 40px auto;
+      padding: 0 24px;
+      flex: 1;
+    }
+
+    /* KPIs / Cards de Resumo Executivo Expandido */
+    .kpi-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .kpi-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      text-align: center;
+    }
+
+    .kpi-card h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #64748b;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .kpi-card .value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    /* Seção de Origem e Mapeamento de Dados */
+    .docs-section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      border: 1px solid #e2e8f0;
+      border-left: 8px solid #3b82f6;
+    }
+
+    .docs-section h2 {
+      color: #0f172a;
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+    }
+
+    .docs-section p {
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .docs-section ul {
+      margin-left: 24px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .docs-section strong {
+      color: #1e3a8a;
+    }
+    
+    /* Configuração dos Cards dos Gráficos */
+    .chart-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .chart-card h2 {
+      font-size: 1.5rem;
+      color: #1e3a8a;
+      margin-bottom: 6px;
+      border-left: 6px solid #3b82f6;
+      padding-left: 14px;
+      font-weight: 700;
+    }
+    
+    .chart-card p.desc {
+      font-size: 0.98rem;
+      color: #64748b;
+      margin-bottom: 24px;
+      padding-left: 20px;
+    }
+    
+    .chart-container {
+      width: 100%;
+      overflow-x: auto;
+      text-align: center;
+      padding: 20px 0;
+      background: #f8fafc;
+      border-radius: 12px;
+      border: 1px dashed #e2e8f0;
+      margin-bottom: 20px;
+    }
+    
+    .chart-container > div {
+      margin: 0 auto !important;
+    }
+
+    .insight-box {
+      background: #f1f5f9;
+      padding: 16px 20px;
+      border-radius: 8px;
+      border-left: 4px solid #64748b;
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.5;
+    }
+
+    .insight-box strong {
+      color: #1e293b;
+    }
+    
+    /* Rodapé Institucional */
+    footer {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 50px 24px;
+      margin-top: 60px;
+      border-top: 4px solid #3b82f6;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-project-info {
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .footer-project-info h3 {
+      font-size: 1.4rem;
+      color: #3b82f6;
+      margin-bottom: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-project-info p {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .repo-link {
+      display: inline-block;
+      background-color: #3b82f6;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .repo-link:hover {
+      background-color: #2563eb;
+    }
+
+    .creators-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      width: 100%;
+    }
+
+    .creator-card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 24px;
+      width: 320px;
+      text-align: center;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .creator-card:hover {
+      transform: translateY(-5px);
+      border-color: #3b82f6;
+    }
+
+    .creator-icon {
+      background: rgba(59, 130, 246, 0.1);
+      color: #3b82f6;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 16px auto;
+      font-weight: bold;
+    }
+
+    .creator-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.03em;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    .footer-bottom {
+      width: 100%;
+      max-width: 1200px;
+      border-top: 1px solid #334155;
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Análise Socioeconômica Regional</h1>
+    <p>Painel Avançado de Monitoramento de Indicadores Municipais Brasileiros (Dados Integrados: Censo/Estimativas 2022)</p>
+  </header>
+
+  <div class="container">
+
+    <div class="kpi-container">
+      <div class="kpi-card">
+        <h3>Municípios Analisados</h3>
+        <div class="value">5.570</div>
+      </div>
+      <div class="kpi-card">
+        <h3>Média de IDHM Nacional</h3>
+        <div class="value">0,742</div>
+      </div>
+      <div class="kpi-card">
+        <h3>População Geral Analisada</h3>
+        <div class="value">203,1 Milhões</div>
+      </div>
+      <div class="kpi-card">
+        <h3>Foco Macrorregional</h3>
+        <div class="value">5 Regiões</div>
+      </div>
+    </div>
+
+    <div class="docs-section">
+      <h2>Origem dos Dados e Informações Monitoradas</h2>
+      <p>As análises estruturadas neste painel consolidam dados oficiais coletados a partir de bases de dados governamentais e demográficas do Brasil, tendo como referencial o ano de <strong>2022</strong>. As informações foram coletadas junto ao <strong>IBGE (Instituto Brasileiro de Geografia e Estatística)</strong> e ao <strong>PNUD (Programa das Nações Unidas para o Desenvolvimento)</strong>.</p>
+      <p>Para a construção dos indicadores e gráficos deste ecossistema visual, são mapeados e correlacionados os seguintes dados úteis de cada município:</p>
+      <ul>
+        <li><strong>Informações de Localização:</strong> Identificação geográfica mapeando a qual das 5 Macrorregiões do país o município pertence (Norte, Nordeste, Centro-Oeste, Sudeste ou Sul) e o seu respectivo Estado.</li>
+        <li><strong>População Estimada:</strong> O volume total de habitantes residentes calculado para o respectivo período censitário.</li>
+        <li><strong>Produto Interno Bruto (PIB):</strong> O montante total de riquezas financeiras geradas pela atividade econômica local.</li>
+        <li><strong>Índice de Desenvolvimento Humano Municipal (IDHM):</strong> A métrica geral de bem-estar social, desmembrada detalhadamente nas subvariáveis de <strong>Educação</strong> (fluxo escolar) e de <strong>Longevidade</strong> (expectativa de vida).</li>
+      </ul>
+    </div>
+
+    <div class="chart-card">
+      <h2>Visualização Geoespacial: Distribuição das Regiões do Brasil</h2>
+      <p class="desc">Mapa cartográfico apresentando o zoneamento político e territorial brasileiro utilizado como chave de agregação de dados.</p>
+      <div class="chart-container"><div id="visMap"></div></div>
+      <div class="insight-box">
+        <strong>Contexto Territorial:</strong> Este mapa renderiza as fronteiras estaduais agrupadas sob a paleta categórica do painel, estabelecendo o alinhamento visual imediato para a leitura de todas as métricas regionais seguintes.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>1. Média do IDHM por Região</h2>
+      <p class="desc">Análise comparativa do Índice de Desenvolvimento Humano Municipal agregada pelas cinco macrorregiões geográficas.</p>
+      <div class="chart-container"><div id="vis1"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> Os dados indicam uma assimetria no desenvolvimento humano do país, com as regiões Centro-Oeste, Sudeste e Sul tipicamente apresentando índices consolidados mais elevados devido à maior concentração de infraestrutura de serviços, enquanto o Norte e o Nordeste exibem margens amplas para avanço estrutural em suas médias locais.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>2. Top 10 Municípios Mais Populosos</h2>
+      <p class="desc">Ranking dos dez maiores municípios do país em volume absoluto de população estimada.</p>
+      <div class="chart-container"><div id="vis2"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> O gráfico evidencia a macrocefalia urbana brasileira, onde grandes capitais como São Paulo e Rio de Janeiro centralizam dezenas de milhões de habitantes, concentrando grande parte dos desafios logísticos e habitacionais do país.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>3. Quantidade de municípios por região do Brasil</h2>
+      <p class="desc">Distribuição numérica total do número de entidades municipais instituídas dentro de cada porção do território nacional.</p>
+      <div class="chart-container"><div id="vis3"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> O gráfico revela o grau de fragmentação territorial e administrativa do Brasil, apontando como regiões como o Nordeste e o Sudeste possuem uma malha pulverizada em uma vasta quantidade de prefeituras autônomas, demandando políticas complexas de partilha do Fundo de Participação dos Municípios (FPM).
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>4. Média do IDHM Educação</h2>
+      <p class="desc">Análise focada exclusivamente no subíndice do IDH correspondente aos fluxos de escolarização.</p>
+      <div class="chart-container"><div id="vis4"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> A dimensão educacional costuma ser a variável mais sensível e com maior disparidade no cálculo global do IDH. Os dados evidenciam quais frentes macrorregionais obtiveram melhor êxito na redução do analfabetismo e no avanço da taxa de frequência escolar na idade adequada de suas respectivas redes de ensino.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>5. IDHM x População Regional</h2>
+      <p class="desc">Cruzamento estatístico mapeando a correlação direta entre o adensamento demográfico e os níveis de bem-estar social.</p>
+      <div class="chart-container"><div id="vis5"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> O cruzamento permite identificar se o volume habitacional impulsiona ou retém os indicadores sociais. Frequentemente, nota-se que cidades médias conseguem obter faixas superiores de IDHM, pois equilibram bom dinamismo econômico sem sofrer de forma tão severa com os gargalos crônicos de infraestrutura das metrópoles saturadas.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>6. Comparação entre Longevidade e Educação Regional</h2>
+      <p class="desc">Correlação interna relacionando as médias de expectativa de vida em face dos níveis de instrução escolar.</p>
+      <div class="chart-container"><div id="vis6"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> O gráfico prova a forte correlação positiva entre saúde (longevidade) e educação. Regiões que investem na base escolar tendem a colher, de forma reflexa, melhores indicadores de qualidade de vida geral e medicina preventiva, elevando as duas pontas da métrica.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>7. Top 10 municípios com maior PIB</h2>
+      <p class="desc">Ranking e distribuição do volume absoluto de riqueza gerada pelos principais polos econômicos municipais do país.</p>
+      <div class="chart-container"><div id="vis7"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> Os dados evidenciam a massiva disparidade na produção de riquezas, demonstrando como poucas metrópoles brasileiras detêm participações gigantescas no Produto Interno Burto. Cidades como São Paulo, Rio de Janeiro e Brasília atuam como as principais forças motrizes da arrecadação e do mercado corporativo nacional.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>8. Participação do PIB por Região</h2>
+      <p class="desc">Mapeamento do grau de concentração econômica e contribuição financeira agregada das principais cidades da federação.</p>
+      <div class="chart-container"><div id="vis8"></div></div>
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> Esta visualização reforça o impacto de distritos industriais, centros financeiros e grandes complexos de serviços no PIB. O peso desproporcional desses municípios líderes ilustra a centralização da atividade econômica de alta densidade no território brasileiro, criando grandes polos de atração para investimentos de capital.
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h2>9. PIB x População por Região</h2>
+      <p class="desc">Visualização do relacionamento entre o Produto Interno Bruto e a população estimada em cada região.</p>
+      <div class="chart-container"><div id="vis9">
+      <div class="insight-box">
+        <strong>Análise Analítica:</strong> O gráfico evidencia a profunda desigualdade na distribuição de riqueza e demografia entre as macrorregiões brasileiras. O Sudeste se destaca isolado no topo, concentrando a maior população e o maior PIB total do país (superior a 3,2 trilhões). Em contrapartida, o Nordeste exibe um forte contraste estrutural: possui a segunda maior população total, mas gera um PIB proporcionalmente baixo, muito próximo ao do Centro-Oeste (que tem uma população bem menor). Além disso, o tamanho das bolhas revela que as regiões Sul e Sudeste lideram em bem-estar social, apresentando as maiores médias de IDHM do território nacional.
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-project-info">
+        <h3>Dashboard Socioeconômico Regional</h3>
+        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Os dados brutos passaram por uma etapa prévia de engenharia, limpeza e padronização utilizando a biblioteca Pandas em ambiente Python (Google Colab). Durante o tratamento, os tipos de dados foram corrigidos, inconsistências de caracteres foram tratadas e as macrorregiões do país foram devidamente mapeadas e validadas de forma correta para cada um dos municípios.</p>
+        <a href="https://github.com/Gilberto-Anderson/Projeto_Analise_e_Limpeza_de_Dados" target="_blank" class="repo-link">Ver Repositório no GitHub</a>
+      </div>
+      
+      <div class="creators-grid">
+        <div class="creator-card">
+          <div class="creator-icon">GA</div>
+          <div class="creator-name">Gilberto Anderson</div>
+        </div>
+        
+        <div class="creator-card">
+          <div class="creator-icon">NS</div>
+          <div class="creator-name">Nicolas Soares</div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        &copy; 2026 Dashboard Socioeconômico Regional. Desenvolvido para fins acadêmicos e analíticos.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

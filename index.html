@@ -30,26 +30,25 @@
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       color: white;
-      padding: 40px 24px; /* Ajustado para bater com o padrão lateral */
+      padding: 60px 24px; /* Ajustado padding lateral para alinhar com o padrão */
       text-align: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       width: 100%;
     }
     
     header h1 {
-      font-size: 2.2rem; /* Leve redução para não quebrar feio no mobile */
+      font-size: 2.6rem;
       font-weight: 800;
       letter-spacing: -0.025em;
       margin-bottom: 12px;
     }
     
     header p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       opacity: 0.85;
       max-width: 900px;
       margin: 0 auto;
       font-weight: 300;
-      line-height: 1.4;
     }
     
     .container {
@@ -189,7 +188,7 @@
     footer {
       background: #0f172a;
       color: #f8fafc;
-      padding: 40px 24px; /* Padronizado com o header */
+      padding: 50px 24px; /* Ajustado padding lateral para alinhar com o padrão */
       margin-top: 60px;
       border-top: 4px solid #3b82f6;
       width: 100%;
@@ -295,29 +294,29 @@
       color: #64748b;
     }
 
-    /* Otimização fina para telas de Celular (Mobile) */
+    /* Modificações específicas para Dispositivos Móveis */
     @media (max-width: 768px) {
       header {
-        padding: 30px 16px;
+        padding: 30px 16px; /* Reduz a altura e iguala as laterais */
       }
       header h1 {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* Evita que o título quebre muitas linhas */
       }
       header p {
         font-size: 0.95rem;
       }
       .container {
-        padding: 0 16px;
+        padding: 0 16px; /* Mantém os cartões com o mesmo recuo lateral do header/footer */
         margin: 20px auto;
       }
       .chart-card, .docs-section {
-        padding: 20px 16px;
+        padding: 20px 16px; /* Enxuga o espaço interno dos cards no mobile */
       }
       footer {
-        padding: 30px 16px;
+        padding: 35px 16px; /* Iguala a proporção e as laterais com o cabeçalho e os blocos */
       }
       .creator-card {
-        width: 100%; /* Faz os cards dos criadores se ajustarem perfeitamente à largura do celular */
+        width: 100%; /* Faz os blocos dos criadores ocuparem toda a largura disponível na tela do celular */
       }
     }
   </style>
@@ -356,7 +355,7 @@
       <p>Para a construção dos indicadores e gráficos deste ecossistema visual, são mapeados e correlacionados os seguintes dados úteis de cada município:</p>
       <ul>
         <li><strong>Informações de Localização:</strong> Identificação geográfica mapeando a qual das 5 Macrorregiões do país o município pertence (Norte, Nordeste, Centro-Oeste, Sudeste ou Sul) e o seu respectivo Estado.</li>
-        <li><strong>População Estimada:</strong> O volume total de habitantes residentes calculado para o respectivo período censitário.</li>
+        <li><strong>População Estimada:</strong> O volume total de habitantes residentes calculated para o respectivo período censitário.</li>
         <li><strong>Produto Interno Bruto (PIB):</strong> O montante total de riquezas financeiras geradas pela atividade econômica local.</li>
         <li><strong>Índice de Desenvolvimento Humano Municipal (IDHM):</strong> A métrica geral de bem-estar social, desmembrada detalhadamente nas subvariáveis de <strong>Educação</strong> (fluxo escolar) e de <strong>Longevidade</strong> (expectativa de vida).</li>
       </ul>
@@ -376,7 +375,7 @@
       <p class="desc">Análise comparativa do Índice de Desenvolvimento Humano Municipal agregada pelas cinco macrorregiões geográficas.</p>
       <figure class="mx-auto">
         <div id="vis1" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> Os dados indicam uma assimetria no desenvolvimento humano do país, com as regiões Centro-Oeste, Sudeste e Sul tipicamente apresentando índices consolidados mais elevados devido à maior concentração de infraestrutura de serviços, enquanto o Norte e o Nordeste exibem margens amplas para avanço estrutural em suas médias locais.
@@ -388,7 +387,7 @@
       <p class="desc">Ranking dos dez maiores municípios do país em volume absoluto de população estimada.</p>
       <figure class="mx-auto">
         <div id="vis2" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico evidencia a macrocefalia urbana brasileira, onde grandes capitais como São Paulo e Rio de Janeiro centralizam dezenas de milhões de habitantes, concentrando grande parte dos desafios logísticos e habitacionais do país.
@@ -400,7 +399,7 @@
       <p class="desc">Distribuição numérica total do número de entidades municipais instituídas dentro de cada porção do território nacional.</p>
       <figure class="mx-auto">
         <div id="vis3" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico revela o grau de fragmentação territorial e administrativa do Brasil, apontando como regiões como o Nordeste e o Sudeste possuem uma malha pulverizada em uma vasta quantidade de prefeituras autônomas, demandando políticas complexas de partilha do Fundo de Participação dos Municípios (FPM).
@@ -412,7 +411,7 @@
       <p class="desc">Análise focada exclusivamente no subíndice do IDH correspondente aos fluxos de escolarização.</p>
       <figure class="mx-auto">
         <div id="vis4" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> A dimensão educacional costuma ser a variável mais sensível e com maior disparidade no cálculo global do IDH. Os dados evidenciam quais frentes macrorregionais obtiveram melhor êxito na redução do analfabetismo e no avanço da taxa de frequência escolar na idade adequada de suas respectivas redes de ensino.
@@ -424,7 +423,7 @@
       <p class="desc">Cruzamento estatístico mapeando a correlação direta entre o adensamento demográfico e os níveis de bem-estar social.</p>
       <figure class="mx-auto">
         <div id="vis5" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> O cruzamento permite identificar se o volume habitacional impulsiona ou retém os indicadores sociais. Frequentemente, nota-se que cidades médias conseguem obter faixas superiores de IDHM, pois equilibram bom dinamismo econômico sem sofrer de forma tão severa com os gargalos crônicos de infraestrutura das metrópoles saturadas.
@@ -436,7 +435,7 @@
       <p class="desc">Correlação interna relacionando as médias de expectativa de vida em face dos níveis de instrução escolar.</p>
       <figure class="mx-auto">
         <div id="vis6" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico prova a forte correlação positiva entre saúde (longevidade) e educação. Regiões que investem na base escolar tendem a colher, de forma reflexa, melhores indicadores de qualidade de vida geral e medicina preventiva, elevando as duas pontas da métrica.
@@ -448,7 +447,7 @@
       <p class="desc">Ranking Pegar distribuição do volume absoluto de riqueza gerada pelos principais polos econômicos municipais do país.</p>
       <figure class="mx-auto">
         <div id="vis7" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> Os dados evidenciam a massiva disparidade na produção de riquezas, demonstrando como poucas metrópoles brasileiras detêm participações gigantescas no Produto Interno Bruto. Cidades como São Paulo, Rio de Janeiro e Brasília atuam como as principais forças motrizes da arrecadação e do mercado corporativo nacional.
@@ -460,7 +459,7 @@
       <p class="desc">Mapeamento do grau de concentração econômica e contribuição financeira agregada das principais cidades da federação.</p>
       <figure class="mx-auto">
         <div id="vis8" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> Esta visualização reforça o impacto de distritos industriais, centros financeiros e grandes complexos de serviços no PIB. O peso desproporcional desses municípios líderes ilustra a centralização da atividade econômica de alta densidade no território brasileiro, criando grandes polos de atração para investimentos de capital.
@@ -472,7 +471,7 @@
       <p class="desc">Visualização do relacionamento entre o Produto Interno Bruto e a população estimada em cada região.</p>
       <figure class="mx-auto">
         <div id="vis9" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
+        <script type="text/javascript" src="Site_visualização/graficos.js"></script>
       </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> O gráfico evidencia a profunda desigualdade na distribuição de riqueza e demografia entre as macrorregiões brasileiras. O Sudeste se destaca isolado no topo, concentrando a maior população e o maior PIB total do país (superior a 3,2 trilhões). Em contrapartida, o Nordeste exibe um forte contraste estrutural: possui a segunda maior população total, mas gera um PIB proporcionalmente baixo, muito próximo ao do Centro-Oeste (que tem uma população bem menor). Além disso, o tamanho das bolhas revela que as regiões Sul e Sudeste lideram em bem-estar social, apresentando as maiores médias de IDHM do território nacional.

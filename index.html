@@ -30,25 +30,26 @@
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       color: white;
-      padding: 60px 24px; /* Ajustado padding lateral para alinhar com o padrão */
+      padding: 40px 24px; /* Ajustado para bater com o padrão lateral */
       text-align: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       width: 100%;
     }
     
     header h1 {
-      font-size: 2.6rem;
+      font-size: 2.2rem; /* Leve redução para não quebrar feio no mobile */
       font-weight: 800;
       letter-spacing: -0.025em;
       margin-bottom: 12px;
     }
     
     header p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       opacity: 0.85;
       max-width: 900px;
       margin: 0 auto;
       font-weight: 300;
+      line-height: 1.4;
     }
     
     .container {
@@ -150,21 +151,17 @@
     
     .chart-container {
       width: 100%;
-      overflow-x: auto; /* Permite rolagem lateral do gráfico se ele for muito grande no mobile */
-      -webkit-overflow-scrolling: touch; /* Suaviza o deslize do dedo no celular */
+      overflow-x: auto;
       text-align: center;
-      padding: 20px 10px;
+      padding: 20px 0;
       background: #f8fafc;
       border-radius: 12px;
       border: 1px dashed #e2e8f0;
       margin-bottom: 20px;
-      display: flex;
-      justify-content: center;
     }
     
-    /* Força os elementos internos gerados pelo Vega (Canvas/SVG) a aparecerem e respeitarem o espaço */
-    .chart-container div, .chart-container canvas, .chart-container svg {
-      max-width: 100% !important;
+    .chart-container > div {
+      margin: 0 auto !important;
     }
 
     .mx-auto {
@@ -192,7 +189,7 @@
     footer {
       background: #0f172a;
       color: #f8fafc;
-      padding: 50px 24px; /* Ajustado padding lateral para alinhar com o padrão */
+      padding: 40px 24px; /* Padronizado com o header */
       margin-top: 60px;
       border-top: 4px solid #3b82f6;
       width: 100%;
@@ -298,29 +295,29 @@
       color: #64748b;
     }
 
-    /* Otimizações Mobile para tamanho igual das Interfaces e correção dos Gráficos */
+    /* Otimização fina para telas de Celular (Mobile) */
     @media (max-width: 768px) {
       header {
-        padding: 30px 16px; /* Reduz espaçamento vertical e iguala as laterais */
+        padding: 30px 16px;
       }
       header h1 {
-        font-size: 1.8rem; /* Impede o título de quebrar exageradamente no mobile */
+        font-size: 1.8rem;
       }
       header p {
         font-size: 0.95rem;
       }
       .container {
-        padding: 0 16px; /* Garante o alinhamento idêntico com as bordas do header e footer */
+        padding: 0 16px;
         margin: 20px auto;
       }
       .chart-card, .docs-section {
-        padding: 20px 16px; /* Reduz respiros internos dos cartões no celular */
+        padding: 20px 16px;
       }
       footer {
-        padding: 35px 16px; /* Ajusta proporção final e iguala margens laterais com todo o resto */
+        padding: 30px 16px;
       }
       .creator-card {
-        width: 100%; /* Faz os blocos dos criadores se ajustarem perfeitamente à largura do celular */
+        width: 100%; /* Faz os cards dos criadores se ajustarem perfeitamente à largura do celular */
       }
     }
   </style>
@@ -359,7 +356,7 @@
       <p>Para a construção dos indicadores e gráficos deste ecossistema visual, são mapeados e correlacionados os seguintes dados úteis de cada município:</p>
       <ul>
         <li><strong>Informações de Localização:</strong> Identificação geográfica mapeando a qual das 5 Macrorregiões do país o município pertence (Norte, Nordeste, Centro-Oeste, Sudeste ou Sul) e o seu respectivo Estado.</li>
-        <li><strong>População Estimada:</strong> O volume total de habitantes residentes calculated para o respectivo período censitário.</li>
+        <li><strong>População Estimada:</strong> O volume total de habitantes residentes calculado para o respectivo período censitário.</li>
         <li><strong>Produto Interno Bruto (PIB):</strong> O montante total de riquezas financeiras geradas pela atividade econômica local.</li>
         <li><strong>Índice de Desenvolvimento Humano Municipal (IDHM):</strong> A métrica geral de bem-estar social, desmembrada detalhadamente nas subvariáveis de <strong>Educação</strong> (fluxo escolar) e de <strong>Longevidade</strong> (expectativa de vida).</li>
       </ul>
@@ -461,7 +458,10 @@
     <div class="chart-card">
       <h2>8. Participação do PIB por Região</h2>
       <p class="desc">Mapeamento do grau de concentração econômica e contribuição financeira agregada das principais cidades da federação.</p>
-      <div class="chart-container"><div id="vis8" class="chartContainer"></div></div>
+      <figure class="mx-auto">
+        <div id="vis8" class="chartContainer"></div>
+        <script type="text/javascript" src="graficos.js"></script>
+      </figure>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> Esta visualização reforça o impacto de distritos industriais, centros financeiros e grandes complexos de serviços no PIB. O peso desproporcional desses municípios líderes ilustra a centralização da atividade econômica de alta densidade no território brasileiro, criando grandes polos de atração para investimentos de capital.
       </div>
@@ -485,7 +485,7 @@
     <div class="footer-content">
       <div class="footer-project-info">
         <h3>Dashboard Socioeconômico Regional</h3>
-        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Os dados brutos passaram por uma etapa prévia de engenharia, limpeza e padronização utilizando a biblioteca Pandas em ambiente Python (Google Colab). Durante o tratamento, os tipos de dados foram corrigidos, inconsistências de caracteres foram treated e as macrorregiões do país foram devidamente mapeadas e validadas de forma correta para cada um dos municípios.</p>
+        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Os dados brutos passaram por uma etapa prévia de engenharia, limpeza e padronização utilizando a biblioteca Pandas em ambiente Python (Google Colab). Durante o tratamento, os tipos de dados foram corrigidos, inconsistências de caracteres foram tratadas e as macrorregiões do país foram devidamente mapeadas e validadas de forma correta para cada um dos municípios.</p>
         <a href="https://github.com/Gilberto-Anderson/Projeto_Analise_e_Limpeza_de_Dados" target="_blank" style="display: inline-block; background-color: #3b82f6; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; margin-top: 10px;">Ver Repositório no GitHub</a>
       </div>
       

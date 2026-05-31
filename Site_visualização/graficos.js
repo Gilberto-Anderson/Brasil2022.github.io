@@ -2,7 +2,7 @@ var maparegionaldobrasil = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Visualização Geoespacial: Distribuição das Regiões do Brasil",
   "width": 650,
-  "height": 500,
+  "height": 420,
   "config": {
     "view": {"stroke": "transparent"},
     "title": {"fontSize": 18, "anchor": "start"}
@@ -26,15 +26,14 @@ var maparegionaldobrasil = {
       {"field": "regiao", "type": "nominal", "title": "Região"}
     ]
   }
-}
-
+};
 vegaEmbed('#visMap', maparegionaldobrasil);
 
 var QuantidadedemunicípiosporregiãodoBrasil = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Quantidade de municípios por região do Brasil",
-  "width": 700,
-  "height": 450,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -71,15 +70,15 @@ var QuantidadedemunicípiosporregiãodoBrasil = {
     "title": {"fontSize": 18, "anchor": "start"}
   },
   "title": "Quantidade de Municípios por Região"
-}
+};
 vegaEmbed('#vis3', QuantidadedemunicípiosporregiãodoBrasil);
 
 var top10municipiosmaispopulosos = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Top 10 Municípios Mais Populosos",
   "description": "Ranking dos municípios brasileiros com maior população",
-  "width": 850,
-  "height": 500,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -182,8 +181,8 @@ var mediaeducacaoporregiao =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "IDHM Educação por Região",
   "description": "Média do IDHM Educação nas regiões brasileiras",
-  "width": 600,
-  "height": 400,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -233,8 +232,8 @@ var IDHMxPopulacao =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "IDHM Médio x População Total por Região",
   "description": "Comparação entre população regional e desenvolvimento humano",
-  "width": 750,
-  "height": 500,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -305,7 +304,7 @@ var IDHMxPopulacao =  {
     "background": "#ffffff",
     "view": {"stroke": "transparent"},
     "axis": {"domain": false, "tickColor": "#cccccc"},
-    "title": {"fontSize": 22, "anchor": "start"}
+    "title": {"fontSize": 18, "anchor": "start"}
   }
 };
 vegaEmbed('#vis5', IDHMxPopulacao);
@@ -367,12 +366,12 @@ var EDUCACAOxLONGEVIDADE =   {
 };
 vegaEmbed('#vis6', EDUCACAOxLONGEVIDADE);
 
-var PIBxREGIAO = {
+var top10municipiosMaisPIB = {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Top 10 Municípios com Maior PIB",
   "description": "Ranking dos municípios brasileiros com maior PIB",
-  "width": 850,
-  "height": 500,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -430,24 +429,24 @@ var PIBxREGIAO = {
     "background": "#ffffff",
     "view": {"stroke": "transparent"},
     "axis": {"domain": false, "tickColor": "#cccccc"},
-    "title": {"fontSize": 22, "anchor": "start"}
+    "title": {"fontSize": 18, "anchor": "start"}
   }
 };
-vegaEmbed('#vis7', PIBxREGIAO);
+vegaEmbed('#vis7', top10municipiosMaisPIB);
 
-var PIBxREGIAO =  {
+var participacaoPIBporRegiao =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Participação do PIB por Região",
   "description": "Distribuição do PIB entre as regiões brasileiras",
-  "width": 500,
-  "height": 400,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
   "transform": [{"calculate": "toNumber(datum.PIB)", "as": "PIB_NUM"}],
   "mark": {
     "type": "arc",
-    "outerRadius": 160,
+    "outerRadius": 140,
     "stroke": "white",
     "strokeWidth": 2
   },
@@ -472,14 +471,14 @@ var PIBxREGIAO =  {
     "title": {"fontSize": 18, "anchor": "start"}
   }
 };
-vegaEmbed('#vis8', PIBxREGIAO);
+vegaEmbed('#vis8', participacaoPIBporRegiao);
 
 var PIBxPOPULACAO =  {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "PIB x População por Região",
   "description": "Bubble Chart PIB x População por Região",
-  "width": 750,
-  "height": 500,
+  "width": 650,
+  "height": 420,
   "data": {
     "url": "https://raw.githubusercontent.com/Gilberto-Anderson/Projeto_Analise_de_dados/refs/heads/main/brasil_2022_regioes_corrigidas.csv"
   },
@@ -562,7 +561,7 @@ var PIBxPOPULACAO =  {
     "background": "#ffffff",
     "view": {"stroke": "transparent"},
     "axis": {"domain": false, "tickColor": "#cccccc"},
-    "title": {"fontSize": 22, "anchor": "start"}
+    "title": {"fontSize": 18, "anchor": "start"}
   }
 };
 vegaEmbed('#vis9', PIBxPOPULACAO);

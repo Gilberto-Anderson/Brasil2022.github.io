@@ -30,9 +30,10 @@
     header {
       background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       color: white;
-      padding: 60px 20px;
+      padding: 60px 24px; /* Ajustado padding lateral para alinhar com o padrão */
       text-align: center;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      width: 100%;
     }
     
     header h1 {
@@ -55,6 +56,7 @@
       margin: 40px auto;
       padding: 0 24px;
       flex: 1;
+      width: 100%;
     }
 
     /* KPIs / Cards de Resumo Executivo Expandido */
@@ -148,17 +150,21 @@
     
     .chart-container {
       width: 100%;
-      overflow-x: auto;
+      overflow-x: auto; /* Permite rolagem lateral do gráfico se ele for muito grande no mobile */
+      -webkit-overflow-scrolling: touch; /* Suaviza o deslize do dedo no celular */
       text-align: center;
-      padding: 20px 0;
+      padding: 20px 10px;
       background: #f8fafc;
       border-radius: 12px;
       border: 1px dashed #e2e8f0;
       margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
     }
     
-    .chart-container > div {
-      margin: 0 auto !important;
+    /* Força os elementos internos gerados pelo Vega (Canvas/SVG) a aparecerem e respeitarem o espaço */
+    .chart-container div, .chart-container canvas, .chart-container svg {
+      max-width: 100% !important;
     }
 
     .mx-auto {
@@ -186,9 +192,10 @@
     footer {
       background: #0f172a;
       color: #f8fafc;
-      padding: 50px 24px;
+      padding: 50px 24px; /* Ajustado padding lateral para alinhar com o padrão */
       margin-top: 60px;
       border-top: 4px solid #3b82f6;
+      width: 100%;
     }
 
     .footer-content {
@@ -289,6 +296,32 @@
       text-align: center;
       font-size: 0.85rem;
       color: #64748b;
+    }
+
+    /* Otimizações Mobile para tamanho igual das Interfaces e correção dos Gráficos */
+    @media (max-width: 768px) {
+      header {
+        padding: 30px 16px; /* Reduz espaçamento vertical e iguala as laterais */
+      }
+      header h1 {
+        font-size: 1.8rem; /* Impede o título de quebrar exageradamente no mobile */
+      }
+      header p {
+        font-size: 0.95rem;
+      }
+      .container {
+        padding: 0 16px; /* Garante o alinhamento idêntico com as bordas do header e footer */
+        margin: 20px auto;
+      }
+      .chart-card, .docs-section {
+        padding: 20px 16px; /* Reduz respiros internos dos cartões no celular */
+      }
+      footer {
+        padding: 35px 16px; /* Ajusta proporção final e iguala margens laterais com todo o resto */
+      }
+      .creator-card {
+        width: 100%; /* Faz os blocos dos criadores se ajustarem perfeitamente à largura do celular */
+      }
     }
   </style>
 </head>
@@ -428,10 +461,7 @@
     <div class="chart-card">
       <h2>8. Participação do PIB por Região</h2>
       <p class="desc">Mapeamento do grau de concentração econômica e contribuição financeira agregada das principais cidades da federação.</p>
-      <figure class="mx-auto">
-        <div id="vis8" class="chartContainer"></div>
-        <script type="text/javascript" src="graficos.js"></script>
-      </figure>
+      <div class="chart-container"><div id="vis8" class="chartContainer"></div></div>
       <div class="insight-box">
         <strong>Análise Analítica:</strong> Esta visualização reforça o impacto de distritos industriais, centros financeiros e grandes complexos de serviços no PIB. O peso desproporcional desses municípios líderes ilustra a centralização da atividade econômica de alta densidade no território brasileiro, criando grandes polos de atração para investimentos de capital.
       </div>
@@ -455,7 +485,7 @@
     <div class="footer-content">
       <div class="footer-project-info">
         <h3>Dashboard Socioeconômico Regional</h3>
-        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Os dados brutos passaram por uma etapa prévia de engenharia, limpeza e padronização utilizando a biblioteca Pandas em ambiente Python (Google Colab). Durante o tratamento, os tipos de dados foram corrigidos, inconsistências de caracteres foram tratadas e as macrorregiões do país foram devidamente mapeadas e validadas de forma correta para cada um dos municípios.</p>
+        <p>Dashboard interativo desenvolvido para consolidação, tratamento e visualização de indicadores socioeconômicos dos municípios brasileiros. Os dados brutos passaram por uma etapa prévia de engenharia, limpeza e padronização utilizando a biblioteca Pandas em ambiente Python (Google Colab). Durante o tratamento, os tipos de dados foram corrigidos, inconsistências de caracteres foram treated e as macrorregiões do país foram devidamente mapeadas e validadas de forma correta para cada um dos municípios.</p>
         <a href="https://github.com/Gilberto-Anderson/Projeto_Analise_e_Limpeza_de_Dados" target="_blank" style="display: inline-block; background-color: #3b82f6; color: #ffffff; text-decoration: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; font-size: 0.9rem; margin-top: 10px;">Ver Repositório no GitHub</a>
       </div>
       

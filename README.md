@@ -5,7 +5,9 @@
 Este projeto foi desenvolvido no Google Colaboratory com o objetivo de realizar a leitura, análise, limpeza e visualização de dados em formato CSV.
 
 # Colaboradores
-Nicolas Soares / Gilberto Anderson
+•[Nicolas Soares](https://github.com/NicolasSantos67)
+
+•[Gilberto Anderson](https://github.com/Gilberto-Anderson)
 # Tema
 Análise de indicadores socioeconômicos dos municípios brasileiros no ano de 2022.
 
